@@ -13,7 +13,7 @@ Run the comprehensive R code review protocol.
 
 1. **Identify scripts to review:**
    - If `$ARGUMENTS` is a specific `.r` filename: review that file only
-   - If `$ARGUMENTS` is `all`: review all R scripts in `code/`
+   - If `$ARGUMENTS` is `all`: review all R scripts in `code/` — exclude `code/temp/` and `code/archive/`
 
 2. **For each script, launch the `r-reviewer` agent** with instructions to:
    - Follow the full protocol in the agent instructions

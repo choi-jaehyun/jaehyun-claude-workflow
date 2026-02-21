@@ -27,7 +27,7 @@ Run the project's R pipeline and verify outputs.
 3. **Verify outputs exist:**
    - Check `outputs/tables/` for expected table files (CSV, tex)
    - Check `outputs/figures/` for expected figure files (PNG, PDF)
-   - Check `temp_data/` for intermediate datasets
+   - Check `data/temp/` for intermediate datasets
    - Verify all output files have non-zero size
 
 4. **Report results:**
