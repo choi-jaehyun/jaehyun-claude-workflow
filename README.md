@@ -92,8 +92,8 @@ Claude: [enters plan mode, drafts a step-by-step plan, asks for approval]
 
 You: Looks good, go ahead.
 
-Claude: [creates 01_clean_enrollment.r, 02_clean_claims.r, 03_make_panel.r,
-         04_estimation.r, 05_figures.r, and main.r — runs the pipeline,
+Claude: [creates 1-01.0_clean_enrollment.r, 1-01.1_clean_claims.r, 1-02.0_make_panel.r,
+         3-01.0_estimation.r, 2-01.0_descriptives.r, and main.r — runs the pipeline,
          verifies outputs, runs /review-r, fixes issues]
 ```
 
@@ -226,8 +226,11 @@ project/
 ├── .claude/                     # Agents, rules, skills, settings
 ├── code/
 │   ├── main.r                   # Reproduces all results
-│   ├── 01_clean_data.r
-│   └── ...
+│   ├── 1-01.0_clean_data.r      # Stage 1: data cleaning/merging
+│   ├── 2-01.0_descriptives.r    # Stage 2: descriptive output
+│   ├── 3-01.0_estimation.r      # Stage 3: analysis
+│   ├── temp/                    # Experimental scripts (temp_ prefix)
+│   └── archive/                 # Archived scripts
 ├── data/
 │   ├── raw/                     # NOT in git
 │   ├── clean/                   # NOT in git

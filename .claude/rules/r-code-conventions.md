@@ -26,23 +26,33 @@ Avoid elaborate tidyverse pipelines. data.table syntax is preferred for most dat
 
 ## 2. Script Structure
 
-Every script should have a header and fit into a numbered pipeline:
+Every script should have a header and fit into the numbered pipeline:
 
 ```r
 # ============================================================
 # Project: [Project Name]
-# Script: 01_clean_data.r - [description]
+# Script: 1-01.0_clean_data.r - [description]
 #
 # Input: [files]
 # Output: [files]
 # ============================================================
 ```
 
-Numbered scripts: `01_clean_source.r`, `02_make_panel.r`, `03_estimation.r`, etc.
+### Naming convention
+
+Scripts use a stage-substep prefix: `STAGE-GROUP.STEP_description.r`
+
+- **`1-XX.X_`** — Data cleaning and merging (decrypt, translate, concatenate, merge)
+- **`2-XX.X_`** — Descriptive output (graphs, tables)
+- **`3-XX.X_`** — Analysis (regression, DiD, IV, RDD, etc.)
+
+Within each stage: `1-01.0_` → `1-01.1_` → `1-02.0_` (group number, then decimal sub-step).
+
+Experimental scripts go in `code/temp/` with a **`temp_`** filename prefix. Archived scripts go in `code/archive/`.
 
 Section separators: `# Section name -------`
 
-A `main.r` orchestrator calls all scripts via `source(here("code", "01_...r"))`.
+A `main.r` orchestrator calls all active scripts via `source(here("code", "1-01.0_...r"))`.
 
 ## 3. Path Management
 
@@ -97,8 +107,10 @@ Do not mix tidyverse and data.table in the same pipeline.
 - **Separate plot creation from saving:**
   ```r
   p <- ggplot(data, aes(x, y)) + geom_point()
-  ggsave(here("outputs", "figures", "plot.png"), p, width = 10, height = 8)
+  ggsave(here("outputs", "figures", "2-01.0_birth_share_trends.png"), p, width = 10, height = 8)
   ```
+- **Output file names mirror the script:** `[stage]-[group].[step]_[description].png`
+  - e.g., script `2-01.0_descriptives.r` → figure `2-01.0_birth_share_trends.png`
 - Explicit dimensions in `ggsave()`: `width`, `height` always specified
 - **Titles:** Include by default. For LaTeX figures, omit (let `\caption{}` handle it) but keep the title as a comment for easy toggling.
 
