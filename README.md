@@ -1,8 +1,8 @@
-# coady-claude-workflow
+# jaehyun-claude-workflow
 
 A template repository for using [Claude Code](https://docs.anthropic.com/en/docs/claude-code) to support empirical research and teaching. Clone it to start a new project with a pre-configured set of agents, review skills, coding conventions, and quality gates.
 
-*Credits* -- I started with Pedro H. C. Sant'Anna's workflow and then added and changed things from there. You can find his setup here: [pedrohcgs/claude-code-my-workflow](https://github.com/pedrohcgs/claude-code-my-workflow).
+*Credits* -- I started with Coady Wing's worflow. Coady started his workflow with Pedro H. C. Sant'Anna's workflow and then added and changed things from there. You can find his setup here: [pedrohcgs/claude-code-my-workflow](https://github.com/pedrohcgs/claude-code-my-workflow).
 
 ---
 

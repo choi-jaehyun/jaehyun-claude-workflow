@@ -38,6 +38,8 @@ Every script should have a header and fit into the numbered pipeline:
 # ============================================================
 ```
 
+Every script should have rm(list = ls()) right before the pacman::p_load() call.
+
 ### Naming convention
 
 Scripts use a stage-substep prefix: `STAGE-GROUP.STEP_description.r`
