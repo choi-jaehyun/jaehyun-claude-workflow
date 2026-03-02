@@ -37,7 +37,7 @@ Open this repo in GitHub and click **Use this template**.
 Or use the command line to clone the repo: 
 
 ```bash
-gh repo create my-new-project --template coadywing/coady-claude-workflow --private --clone
+gh repo create my-new-project --template choi-jaehyun/jaehyun-claude-workflow --private --clone
 cd my-new-project
 ```
 
@@ -45,7 +45,7 @@ cd my-new-project
 
 To make sure `here()` paths work correctly, open the project the right way:
 
-- **RStudio:** Double-click the `.Rproj` file (e.g., `coady-claude-workflow.Rproj`). This sets the working directory to the project root automatically.
+- **RStudio:** Double-click the `.Rproj` file (e.g., `jaehyun-claude-workflow.Rproj`). This sets the working directory to the project root automatically.
 - **VS Code:** Open the project folder (`File → Open Folder…`). The `.Rproj` file at the root tells `here()` where it is.
 
 Either method anchors `here()` to the project root so all file paths resolve correctly.
