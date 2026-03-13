@@ -25,6 +25,7 @@
 | `/review-paper [file]` | Full manuscript review (identification, econometrics, citations) |
 | `/validate-bib` | Cross-reference citations vs bibliography |
 | `/devils-advocate [file]` | Challenge design decisions |
+| `/split-pdf [path or query]` | Download, split, and deeply read an academic PDF (4-page chunks, structured extraction) |
 
 ---
 
