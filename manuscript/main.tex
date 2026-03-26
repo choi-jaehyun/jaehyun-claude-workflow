@@ -1,10 +1,10 @@
 \documentclass[12pt]{article}
-\usepackage{manuscript/preamble_code/paper}
-\usepackage{manuscript/preamble_code/math}
-\addbibresource{manuscript/references.bib}
+\usepackage{preamble_code/paper}
+\usepackage{preamble_code/math}
+\addbibresource{references.bib}
 
 \title{Paper Title}
-\author{Author Name \\ Institution}
+\author{Jaehyun Choi\thanks{jc234@iu.edu} \quad Coady Wing\thanks{cwing@iu.edu} \\ O'Neill School of Public and Environmental Affairs, Indiana University -- Bloomington}
 
 % Import macros with inline results from R pipeline.
 % Uncomment after running code/06_export_results_tex.r:
@@ -15,29 +15,29 @@
 \maketitle
 \thispagestyle{empty}
 \begin{abstract}
-    \input{manuscript/0_abstract}
+    \input{0_abstract}
 \end{abstract}
 
-\textbf{}\newpage
+\newpage
 \setcounter{page}{1}
 
 \section{Introduction}
-\input{manuscript/1_introduction}
+\input{1_introduction}
 
 \section{Data}
-\input{manuscript/2_data}
+\input{2_data}
 
 \section{Methods}
-\input{manuscript/3_methods}
+\input{3_methods}
 
 \section{Results}
-\input{manuscript/4_results}
+\input{4_results}
 
 \section{Discussion}
-\input{manuscript/5_discussion}
+\input{5_discussion}
 
 \clearpage
-\input{manuscript/6_exhibits}
+\input{6_exhibits}
 
 \newpage
 \printbibliography
@@ -48,7 +48,7 @@
 \setcounter{figure}{0} \renewcommand{\thefigure}{A.\arabic{figure}}
 \setcounter{table}{0} \renewcommand{\thetable}{A.\arabic{table}}
 
-\input{manuscript/7_appendix}
+\input{7_appendix}
 \clearpage{}
 
 \end{document}

@@ -59,7 +59,7 @@ project/
 ├── quality_reports/
 │   ├── plans/
 │   └── session_logs/
-└── lab_journal.md               # NOT in git
+│       └── lab_journal.md           # NOT in git
 ```
 
 **Compilation:** `latexmk -pdf manuscript/main.tex` from the project root.
@@ -111,13 +111,13 @@ Naming convention mirrors the script that produced the file: `[stage]-[group].[s
 ## What Goes in Git
 
 - **Commit:** code, outputs (tables/figures), manuscript, .Rproj
-- **Do NOT commit:** data/raw/, data/clean/, data/temp/, data_dict/, literature/, lab_journal.md, .Rhistory, .RData
+- **Do NOT commit:** data/raw/, data/clean/, data/temp/, data_dict/, literature/, quality_reports/session_logs/lab_journal.md, .Rhistory, .RData
 
 ---
 
 ## Lab Journal
 
-Maintain `lab_journal.md` in the project root (gitignored). Update at session end:
+Maintain `quality_reports/session_logs/lab_journal.md` (gitignored). Update at session end:
 - What was accomplished
 - Issues encountered
 - Next steps

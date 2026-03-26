@@ -93,9 +93,6 @@
 % Appendix ---------------------------------------------------------------------
 
 \AtBeginEnvironment{appendix}{
-% graphics for embedding pdf/figures
-\usepackage{graphicx}
-% \AfterEndEnvironment{thebibliography}{
   \setcounter{theorem}{0}
   \setcounter{proposition}{0}
   \setcounter{lemma}{0}
@@ -312,27 +309,22 @@
 \pgfplotsset{compat=1.18}
 
 % Table and Figure labelling ---------------------------------------------------
-\usepackage{caption}
 \usepackage{graphicx}
-
-\DeclareCaptionLabelSeparator{threedash}{\,---\,}
-\DeclareCaptionFont{jet}{\color{jet}}
-\captionsetup*[table]{format=plain, labelsep=threedash, font={bf}}
-\captionsetup*[figure]{format=plain, labelsep=threedash, font={bf}}
-
-% Alternative: Left align captions
-% \captionsetup[table]{labelfont=it, textfont={bf}, labelsep=newline, justification=raggedright, singlelinecheck=off}
-% \captionsetup[figure]{labelfont=it, textfont={bf}, labelsep=newline, justification=raggedright, singlelinecheck=off}
-
-\usepackage[justification=raggedright,singlelinecheck=false]{caption}
+\usepackage[justification=raggedright, singlelinecheck=false]{caption}
 
 % multifigure with \caption
 % \begin{subfigure}\caption{} \end{subfigure}
 \usepackage{subcaption}
-%\captionsetup*[subfigure]{format=plain, font={jet, footnotesize, bf}}
 
-\usepackage[figureposition=top]{caption}
-\captionsetup[subfigure]{justification=raggedright,singlelinecheck=false} % left-align all subfigure captions
+\DeclareCaptionLabelSeparator{threedash}{\,---\,}
+\DeclareCaptionFont{jet}{\color{jet}}
+\captionsetup*[table]{format=plain, labelsep=threedash, font={bf}}
+\captionsetup*[figure]{format=plain, labelsep=threedash, font={bf}, position=top}
+\captionsetup[subfigure]{justification=raggedright, singlelinecheck=false}
+
+% Alternative: Left align captions
+% \captionsetup[table]{labelfont=it, textfont={bf}, labelsep=newline, justification=raggedright, singlelinecheck=off}
+% \captionsetup[figure]{labelfont=it, textfont={bf}, labelsep=newline, justification=raggedright, singlelinecheck=off}
 
 
 % Change width of page for indented  assumption
