@@ -35,13 +35,22 @@ IMPLEMENT → VERIFY → REVIEW (agents) → FIX → RE-VERIFY → SCORE
 
 ## Session Management
 
-**Start:** Read CLAUDE.md → check `git log` → check `quality_reports/plans/` for in-progress work.
+**Start:** Read CLAUDE.md (contains recent sessions + project context) → check `git log --oneline -10` → check `quality_reports/plans/` for in-progress work. This is enough to get up to speed. Do NOT read the lab journal unless the user asks or something critical seems missing from CLAUDE.md.
 
-**During:** Save important decisions to disk (session logs, plan updates). Prefer auto-compression over `/clear`.
+**During:** Save important decisions to disk (plan files). Prefer auto-compression over `/clear`.
 
-**End:** Save session log to `quality_reports/session_logs/YYYY-MM-DD_description.md`. Note what was done and what's next.
+**End — two-track logging:**
+1. **Lab journal** (`quality_reports/session_logs/lab_journal.md`): Append a full session entry — everything done, commands run, decisions made, errors hit. This is the permanent archive; be thorough.
+2. **CLAUDE.md Recent Sessions block**: Prepend a new entry (newest on top). Keep only the 3 most recent — drop the oldest when adding a new one. Format:
+   ```
+   ### YYYY-MM-DD — [one-line description]
+   - What was accomplished
+   - Key decisions or findings
+   - Blockers or open questions
+   - Next steps
+   ```
 
-**Recovery** (after compression or new session): Read most recent plan + `git log --oneline -10` + `git diff`. State what you understand the current task to be.
+**Recovery** (after compression or new session): Read CLAUDE.md → `git log --oneline -10` → `git diff`. State what you understand the current task to be. Only read the lab journal if instructed.
 
 ## Continuous Learning
 

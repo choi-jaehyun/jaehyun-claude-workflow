@@ -6,6 +6,19 @@
 
 ---
 
+## Recent Sessions
+
+<!-- INSTRUCTIONS FOR CLAUDE: At session end, prepend a new entry here (newest on top).
+     Keep only the 3 most recent entries — drop older ones.
+     Format: ### YYYY-MM-DD — [one-line description]
+     Body: 3-5 bullet points: what was done, key decisions, what's next.
+     Full history lives in quality_reports/session_logs/lab_journal.md — do NOT read it
+     unless the user asks or something critical seems to be missing. -->
+
+*(No sessions logged yet.)*
+
+---
+
 ## Project Overview
 
 <!-- Describe your project in 2-3 sentences. What question does it answer? -->
@@ -117,7 +130,4 @@ Naming convention mirrors the script that produced the file: `[stage]-[group].[s
 
 ## Lab Journal
 
-Maintain `quality_reports/session_logs/lab_journal.md` (gitignored). Update at session end:
-- What was accomplished
-- Issues encountered
-- Next steps
+`quality_reports/session_logs/lab_journal.md` (gitignored) is the **full permanent archive** of all session work. Claude appends to it at every session end with complete detail. It is NOT read at session start — the Recent Sessions block in this file serves that purpose. Only read the lab journal when the user asks or when something appears to be missing from context.
