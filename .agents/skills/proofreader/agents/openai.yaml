@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Proofreader"
+  short_description: "Academic proofreading for papers, slides, and notes"
+  default_prompt: "Use $proofreader to proofread this document for grammar, typos, overflow, and consistency."

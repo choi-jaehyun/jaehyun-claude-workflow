@@ -1,0 +1,4 @@
+interface:
+  display_name: "R Code Conventions"
+  short_description: "Repo-local R style and pipeline standards"
+  default_prompt: "Use $r-code-conventions to apply this repository's R coding standards before editing or reviewing R scripts."

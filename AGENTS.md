@@ -1,4 +1,4 @@
-# CLAUDE.md — Project Workflow Template
+# AGENTS.md — Project Workflow Template
 
 **Project:** [PROJECT NAME]
 **Type:** [research / teaching]
@@ -8,26 +8,33 @@
 
 ## Recent Sessions
 
-<!-- INSTRUCTIONS FOR CLAUDE: At session end, prepend a new entry here (newest on top).
+<!-- INSTRUCTIONS FOR Codex: At session end, prepend a new entry here (newest on top).
      Keep only the 3 most recent entries — drop older ones.
      Format: ### YYYY-MM-DD — [one-line description]
      Body: 3-5 bullet points: what was done, key decisions, what's next.
      Full history lives in quality_reports/session_logs/lab_journal.md — do NOT read it
      unless the user asks or something critical seems to be missing. -->
 
-*(No sessions logged yet.)*
+### 2026-04-11 - Converted Claude agents and rules into Codex skills
+- Read `.claude/agents/*.md` and `.claude/rules/*.md` as source material and left the `.claude/` folder untouched.
+- Added local skills under `.agents/skills`: `domain-reviewer`, `proofreader`, `r-reviewer`, `verifier`, `r-code-conventions`, and `workflow`, each with Codex-native instructions and reference files.
+- Rewired `proofread`, `review-r`, `review-paper`, `run-pipeline`, and `compile-paper` to use the new local skills instead of Claude-only agent or rule references.
+- Updated `devils-advocate` to stop pointing at `.Codex/rules/`.
+- Tried to run the skill validator, but the local Python environment is missing `PyYAML`, so validation was completed with manual sanity checks instead.
 
 ---
 
 ## Immediate Plans
 
-<!-- INSTRUCTIONS FOR CLAUDE: Keep 2-3 of the most important upcoming tasks here.
+<!-- INSTRUCTIONS FOR Codex: Keep 2-3 of the most important upcoming tasks here.
      Update this list at session end — mark completed items done, add new ones if discussed.
      Keep it short: one line per item, ordered by priority.
      Format: - [ ] Short description of task
               - [x] Completed task (remove these when list is updated) -->
 
-*(No plans yet.)*
+- [ ] Forward-test the migrated skills on a real manuscript, R script, or pipeline run.
+- [ ] Decide whether `CLAUDE.md` and `AGENTS.md` should both remain active session-memory files or be consolidated.
+- [ ] Clean up any remaining template placeholders in project metadata if this repo is moving fully to the Codex workflow.
 
 ---
 
@@ -60,8 +67,8 @@
 
 ```
 project/
-├── CLAUDE.md
-├── .claude/                     # Agents, rules, skills
+├── AGENTS.md
+├── .Codex/                     # Agents, rules, skills
 ├── code/
 │   ├── main.r                   # Reproduces all results
 │   ├── 1-01.0_clean_data.r      # Stage 1: data cleaning/merging
@@ -142,4 +149,4 @@ Naming convention mirrors the script that produced the file: `[stage]-[group].[s
 
 ## Lab Journal
 
-`quality_reports/session_logs/lab_journal.md` (gitignored) is the **full permanent archive** of all session work. Claude appends to it at every session end with complete detail. It is NOT read at session start — the Recent Sessions block in this file serves that purpose. Only read the lab journal when the user asks or when something appears to be missing from context.
+`quality_reports/session_logs/lab_journal.md` (gitignored) is the **full permanent archive** of all session work. Codex appends to it at every session end with complete detail. It is NOT read at session start — the Recent Sessions block in this file serves that purpose. Only read the lab journal when the user asks or when something appears to be missing from context.

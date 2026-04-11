@@ -1,0 +1,4 @@
+interface:
+  display_name: "Domain Reviewer"
+  short_description: "Top-journal substance review for empirical work"
+  default_prompt: "Use $domain-reviewer to review this manuscript for identification, estimation, citations, and code-theory alignment."

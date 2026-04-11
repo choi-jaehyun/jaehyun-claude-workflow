@@ -1,0 +1,4 @@
+interface:
+  display_name: "R Reviewer"
+  short_description: "Rigorous review of empirical research R scripts"
+  default_prompt: "Use $r-reviewer to review this R script for reproducibility, data.table conventions, and domain correctness."

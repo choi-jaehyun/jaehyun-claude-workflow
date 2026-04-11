@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workflow Loop"
+  short_description: "Plan-build-verify workflow for this repository"
+  default_prompt: "Use $workflow to follow this repository's planning, verification, and session-logging workflow."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Verifier"
+  short_description: "Compile, render, run, and verify project outputs"
+  default_prompt: "Use $verifier to verify these project files by running the appropriate compile, render, or execution checks."
