@@ -15,6 +15,12 @@
      Full history lives in quality_reports/session_logs/lab_journal.md — do NOT read it
      unless the user asks or something critical seems to be missing. -->
 
+### 2026-04-11 - Updated README for the Codex and Claude hybrid workflow
+- Rewrote `README.md` so it describes the active Codex skill tree in `.agents/skills` and the preserved Claude source material in `.claude/`.
+- Documented the current workflow model around `AGENTS.md`, `quality_reports/`, and the plan-build-verify loop.
+- Updated setup instructions, project structure, and the skill inventory to match the current repository state.
+- Kept the README explicit that `.claude/` remains preserved source material and `.agents/skills` is the active Codex layer.
+
 ### 2026-04-11 - Converted Claude agents and rules into Codex skills
 - Read `.claude/agents/*.md` and `.claude/rules/*.md` as source material and left the `.claude/` folder untouched.
 - Added local skills under `.agents/skills`: `domain-reviewer`, `proofreader`, `r-reviewer`, `verifier`, `r-code-conventions`, and `workflow`, each with Codex-native instructions and reference files.
@@ -34,7 +40,7 @@
 
 - [ ] Forward-test the migrated skills on a real manuscript, R script, or pipeline run.
 - [ ] Decide whether `CLAUDE.md` and `AGENTS.md` should both remain active session-memory files or be consolidated.
-- [ ] Clean up any remaining template placeholders in project metadata if this repo is moving fully to the Codex workflow.
+- [ ] Refresh any remaining project docs or template placeholders that still assume a Claude-only workflow.
 
 ---
 

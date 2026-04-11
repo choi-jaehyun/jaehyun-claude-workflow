@@ -1,30 +1,115 @@
 # jaehyun-claude-workflow
 
-A template repository for using [Claude Code](https://docs.anthropic.com/en/docs/claude-code) to support empirical research and teaching. Clone it to start a new project with a pre-configured set of agents, review skills, coding conventions, and quality gates.
+A template repository for AI-assisted empirical research and teaching workflows.
+It started as a Claude Code workflow, and it now also includes a Codex-native skill tree in `.agents/skills` while preserving the original `.claude` material.
 
-*Credits* -- I started with Coady Wing's worflow. Coady started his workflow with Pedro H. C. Sant'Anna's workflow and then added and changed things from there. You can find his setup here: [pedrohcgs/claude-code-my-workflow](https://github.com/pedrohcgs/claude-code-my-workflow).
+*Credits* -- I started with Coady Wing's workflow. Coady started from Pedro H. C. Sant'Anna's workflow and then added and changed things from there. You can find that setup here: [pedrohcgs/claude-code-my-workflow](https://github.com/pedrohcgs/claude-code-my-workflow).
 
 ---
 
-## What's in the box
+## What this repo includes
 
-| Component | What it does |
-|-----------|-------------|
-| `CLAUDE.md` | Project guide that Claude reads at session start — project structure, available skills, git policy. Customize per project. |
-| 4 agents | Specialized reviewers: `proofreader`, `r-reviewer`, `domain-reviewer`, `verifier` — only loaded when spawned (zero context cost until used) |
-| 7 skills | Slash commands: `/proofread`, `/review-r`, `/review-paper`, `/compile-paper`, `/run-pipeline`, `/validate-bib`, `/devils-advocate` |
-| 2 rules | Auto-loaded conventions: `workflow.md` (always on) and `r-code-conventions.md` (loaded only when touching R files) |
-| Skeleton Directory Structure | `code/`, `data/raw/`, `data/clean/`, `data/temp/`, `data_dict/`, `outputs/`, `manuscript/`, `quality_reports/` |
+| Component | Purpose |
+| --- | --- |
+| `AGENTS.md` | Codex-facing project guide and short session memory |
+| `CLAUDE.md` | Claude-facing project guide kept for compatibility |
+| `.agents/skills/` | Codex-native skills for review, verification, workflow, and project conventions |
+| `.claude/agents/` | Original Claude agent specs preserved as source material |
+| `.claude/rules/` | Original Claude rules preserved as source material |
+| `quality_reports/` | Plans, review outputs, and session logs |
+| `code/`, `manuscript/`, `outputs/`, `slides/` | Research and teaching project skeleton |
+
+---
+
+## Current skill layout
+
+### Codex-native skills in `.agents/skills`
+
+- `compile-paper`
+- `devils-advocate`
+- `domain-reviewer`
+- `proofread`
+- `proofreader`
+- `r-code-conventions`
+- `r-reviewer`
+- `review-paper`
+- `review-r`
+- `run-pipeline`
+- `split-pdf`
+- `validate-bib`
+- `verifier`
+- `workflow`
+
+### Preserved Claude source material in `.claude`
+
+- `agents/domain-reviewer.md`
+- `agents/proofreader.md`
+- `agents/r-reviewer.md`
+- `agents/verifier.md`
+- `rules/r-code-conventions.md`
+- `rules/workflow.md`
+
+The intended setup is:
+
+- Keep `.claude/` intact as the original source library
+- Use `.agents/skills/` as the active Codex skill layer
+- Customize `AGENTS.md` for project-specific context
+
+---
+
+## What the main skills do
+
+| Skill | Purpose |
+| --- | --- |
+| `/compile-paper` | Compile the LaTeX manuscript and report errors and warnings |
+| `/run-pipeline` | Run `main.r` or a target R script and verify outputs |
+| `/proofread [file]` | Writing quality review for papers, slides, notes, and docs |
+| `/review-r [file]` | Report-only review of R code quality and reproducibility |
+| `/review-paper [file]` | Substantive manuscript review with referee-style concerns |
+| `/validate-bib` | Cross-check citations against bibliography entries |
+| `/devils-advocate [file]` | Challenge pedagogy, ordering, notation, and cognitive load |
+| `/split-pdf [path or query]` | Deep-read academic PDFs in smaller chunks |
+
+---
+
+## Workflow model
+
+The current repo workflow is:
+
+1. Store project context in `AGENTS.md`
+2. Use Codex skills from `.agents/skills`
+3. Keep `.claude/` as preserved upstream logic and source material
+4. Save plans and review outputs under `quality_reports/`
+5. Append detailed session history to `quality_reports/session_logs/lab_journal.md`
+
+For substantial work, the intended loop is:
+
+```text
+PLAN -> IMPLEMENT -> VERIFY -> REVIEW -> FIX -> RE-VERIFY
+```
+
+The main supporting skills for that loop are:
+
+- `workflow`
+- `verifier`
+- `proofreader`
+- `r-reviewer`
+- `domain-reviewer`
 
 ---
 
 ## Prerequisites
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 
-- R (for statistical computing and data manipulation)
-- LaTeX Distribution (for manuscripts) 
-- Quarto (for slides and teaching documents)
-- Git and GitHub CLI (`gh`)
+- Git
+- R
+- LaTeX distribution
+- Quarto
+- An AI coding environment that can use this repo structure
+
+Helpful but optional:
+
+- GitHub CLI (`gh`)
+- RStudio for `.Rproj`-anchored `here()` paths
 
 ---
 
@@ -32,236 +117,107 @@ A template repository for using [Claude Code](https://docs.anthropic.com/en/docs
 
 ### 1. Create a new project from the template
 
-Open this repo in GitHub and click **Use this template**. 
-
-Or use the command line to clone the repo: 
+Use the GitHub template UI, or:
 
 ```bash
 gh repo create my-new-project --template choi-jaehyun/jaehyun-claude-workflow --private --clone
 cd my-new-project
 ```
 
-### 2. Open the project
+### 2. Open the project correctly
 
-To make sure `here()` paths work correctly, open the project the right way:
+To keep `here()` anchored to the project root:
 
-- **RStudio:** Double-click the `.Rproj` file (e.g., `jaehyun-claude-workflow.Rproj`). This sets the working directory to the project root automatically.
-- **VS Code:** Open the project folder (`File → Open Folder…`). The `.Rproj` file at the root tells `here()` where it is.
+- In RStudio, open the `.Rproj` file
+- In VS Code, open the project folder itself
 
-Either method anchors `here()` to the project root so all file paths resolve correctly.
+### 3. Customize the project guides
 
-### 3. Customize CLAUDE.md
+At minimum, update:
 
-Open `CLAUDE.md` and fill in the placeholders at the top:
+- `AGENTS.md`
+- `CLAUDE.md` if you still plan to use Claude-facing project guidance
 
-- Project name and description
-- Project type (research or teaching)
-- Delete directory sections you don't need (e.g., `manuscript/` for a teaching project, `slides/` for a research project)
+Fill in:
 
-### 4. Set up data and directories
+- project name
+- project overview
+- immediate plans
+- any project-specific structure notes
 
-```bash
-# For research projects — put your raw data in place
-cp /path/to/your/data.csv data/raw/
+### 4. Put your data and documents in place
 
-# For teaching — create your slide directory
-mkdir -p slides
-```
+Typical locations:
 
-### 5. Start Claude Code
+- `data/raw/` for raw data
+- `manuscript/` for LaTeX papers
+- `slides/` for teaching decks
+- `literature/` for reference PDFs
 
-```bash
-claude
-```
+### 5. Start working with the repo
 
-Claude reads `CLAUDE.md` on startup and knows your project structure, coding conventions, and available tools. You're ready to go.
+Use your AI coding tool of choice and point it at:
 
----
-
-## Use Case 1: Research project
-
-You have data. You want to clean it, run regressions, make figures, and write a paper.
-
-### Typical first session
-
-```
-You: I have two data sources in data/raw/ — enrollment.csv and claims.csv.
-     We need to clean these two data sets and merge on member_id and year to create an analysis panel. Eventually, we will fit diff-in-diff regressions. My rough notes on the project are in notes/project_notes.md.
-
-Claude: [enters plan mode, drafts a step-by-step plan, asks for approval]
-
-You: Looks good, go ahead.
-
-Claude: [creates 1-01.0_clean_enrollment.r, 1-01.1_clean_claims.r, 1-02.0_make_panel.r,
-         3-01.0_estimation.r, 2-01.0_descriptives.r, and main.r — runs the pipeline,
-         verifies outputs, runs /review-r, fixes issues]
-```
-
-### Common commands during a research session
-
-```
-You: Run the pipeline and make sure everything still works.
-     → Claude runs main.r, checks that all outputs exist
-
-You: Add state fixed effects to the main specification.
-     → Claude modifies the estimation script, re-runs, compares results
-
-You: /review-r 04_estimation.r
-     → Launches the R code reviewer — checks data.table conventions,
-        reproducibility, domain correctness, figure quality
-
-You: /compile-paper
-     → Compiles the LaTeX manuscript, reports errors and warnings
-
-You: Write up the main results in the paper. The point estimates and
-     standard errors should come from the R output, not be hardcoded.
-     → Claude creates LaTeX \newcommand macros from R output and
-        references them in the manuscript text
-
-You: /proofread manuscript/3_results.tex
-     → Runs the proofreader on the results section
-
-You: /validate-bib
-     → Cross-checks all \citet{} and \citep{} keys against references.bib
-```
-
-### End of session
-
-```
-You: Let's wrap up. Commit what we have.
-     → Claude commits with a descriptive message, updates lab_journal.md
-```
-
-### Next session
-
-```
-You: [starts claude]
-
-Claude: [reads CLAUDE.md, checks git log, reads recent session log,
-         picks up where you left off]
-```
-
----
-
-## Use Case 2: Teaching project
-
-You're building lecture slides, assignments, or course materials.
-
-### Typical first session
-
-```
-You: I'm teaching a graduate econometrics course. I need to create
-     Quarto RevealJS slides for a lecture on instrumental variables. I made some initial notes on what I want in notes/iv_notes.qmd. The idea is to start with motivation, then the formal setup, then a worked example with simulated data.
-
-Claude: [enters plan mode — outlines slide structure, proposes
-         an R simulation for the worked example, asks for approval]
-
-You: Looks good. Make sure the slides aren't too dense.
-
-Claude: [creates slides/lecture05_iv.qmd with motivation, definitions,
-         worked example with R code chunks, renders to verify]
-```
-
-### Common commands during a teaching session
-
-```
-You: The notation slide has too much on it. Split it up.
-     → Claude splits the slide, builds notation incrementally
-
-You: /proofread slides/lecture05_iv.qmd
-     → Checks grammar, typos, citation format, and consistency
-
-You: /devils-advocate slides/lecture05_iv.qmd
-     → Challenges the slide design: "Could students understand
-        this better if we showed X before Y?"
-
-You: Create a problem set on IV estimation. Three problems,
-     increasing difficulty. Include an empirical exercise
-     using the simulated data from the lecture.
-     → Claude creates assignments/ps05_iv.qmd
-
-You: I need to present this paper at a seminar next week.
-     Can you help me build slides that tell the story clearly
-     for a non-specialist audience?
-     → Claude drafts seminar slides, proofreads, and runs
-        /devils-advocate to challenge the presentation
-```
-
----
-
-## Available slash commands
-
-| Command | What it does |
-|---------|-------------|
-| `/compile-paper` | Compile LaTeX manuscript (latexmk + biber) |
-| `/run-pipeline` | Run `main.r` and verify all outputs |
-| `/proofread [file]` | Grammar, typos, consistency, overflow |
-| `/review-r [file]` | R code quality, reproducibility, conventions |
-| `/review-paper [file]` | Full manuscript review (identification, econometrics, citations) |
-| `/validate-bib` | Cross-check citations vs bibliography |
-| `/devils-advocate [file]` | Challenge content with pedagogical questions |
-
----
-
-## Review agents
-
-These run automatically during the orchestrator loop or can be invoked via skills:
-
-| Agent | Reviews | Triggered by |
-|-------|---------|-------------|
-| `proofreader` | Grammar, typos, overflow, citations | `.tex`, `.qmd`, `.md` files |
-| `r-reviewer` | Code quality, data.table, figures, reproducibility | `.r` / `.R` files |
-| `domain-reviewer` | Identification, derivations, citations, code-theory alignment | Manuscripts and domain-critical content |
-| `verifier` | Compilation, rendering, output existence | All file types |
+- `AGENTS.md` for current project instructions
+- `.agents/skills/` for Codex-native skill behavior
+- `.claude/` only when you want to inspect the original Claude-side source material
 
 ---
 
 ## Project structure
 
-Adapt to your needs. Delete what you don't use.
-
-```
+```text
 project/
-├── CLAUDE.md                    # Claude reads this first
-├── .claude/                     # Agents, rules, skills, settings
-├── code/
-│   ├── main.r                   # Reproduces all results
-│   ├── 1-01.0_clean_data.r      # Stage 1: data cleaning/merging
-│   ├── 2-01.0_descriptives.r    # Stage 2: descriptive output
-│   ├── 3-01.0_estimation.r      # Stage 3: analysis
-│   ├── temp/                    # Experimental scripts (temp_ prefix)
-│   └── archive/                 # Archived scripts
-├── data/
-│   ├── raw/                     # NOT in git
-│   ├── clean/                   # NOT in git
-│   └── temp/                    # NOT in git
-├── data_dict/                   # Data dictionaries for raw sources (NOT in git)
-├── outputs/
-│   ├── tables/
-│   └── figures/
-├── manuscript/                  # LaTeX paper
-│   ├── main.tex
-│   └── references.bib
-├── slides/                      # Quarto RevealJS (teaching)
-├── quality_reports/             # Auto-generated plans, logs, reviews
-├── .gitignore
-├── README.md
-├── project-name.Rproj           # Open this in RStudio
-└── lab_journal.md               # NOT in git
+|-- AGENTS.md
+|-- CLAUDE.md
+|-- .agents/
+|   `-- skills/
+|-- .claude/
+|   |-- agents/
+|   `-- rules/
+|-- code/
+|-- data/
+|   |-- raw/
+|   |-- clean/
+|   `-- temp/
+|-- data_dict/
+|-- literature/
+|-- manuscript/
+|-- outputs/
+|   |-- figures/
+|   `-- tables/
+|-- quality_reports/
+|   |-- plans/
+|   `-- session_logs/
+|-- slides/
+|-- README.md
+`-- *.Rproj
 ```
 
 ---
 
-## Coding conventions (summary)
+## Coding conventions summary
 
-- **data.table** for data manipulation (not tidyverse)
-- **here()** for all paths (never `setwd()`, never absolute paths)
-- **pacman::p_load()** for packages
-- **fixest** for regressions
-- **ggplot2** for figures — separate creation from `ggsave()`, include titles by default (omit for LaTeX figures)
-- **Explicit code** over abstraction — functions only when they prevent dangerous repetition
-- **message()** for status — never `cat()` or `print()`
-- **Snake_case** everywhere
+- Use `data.table` for core data manipulation
+- Use `here()` for paths
+- Avoid `setwd()` and absolute machine-specific paths
+- Prefer explicit code over premature abstraction
+- Use `message()` rather than noisy console printing
+- Use snake_case naming
+- Save figures explicitly with `ggsave()` dimensions
 
-Full details in `.claude/rules/r-code-conventions.md`.
+The active Codex-facing reference for R standards is:
 
+- `.agents/skills/r-code-conventions/references/r-standards.md`
+
+The original Claude rule is preserved at:
+
+- `.claude/rules/r-code-conventions.md`
+
+---
+
+## Notes
+
+- `.claude/` should be treated as preserved source material unless you intentionally want to revise the upstream Claude setup.
+- `.agents/skills/` is now the main place for Codex skill behavior.
+- `AGENTS.md` is the preferred short session-memory file for Codex in this repo.
