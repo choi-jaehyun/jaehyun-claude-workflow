@@ -15,6 +15,12 @@
      Full history lives in quality_reports/session_logs/lab_journal.md — do NOT read it
      unless the user asks or something critical seems to be missing. -->
 
+### 2026-04-24 - Added a referee workspace and documented it across the template
+- Added `quality_reports/referee_workspace/` with referee-writing reference files, including a basic guideline plus example cover-letter and referee-report documents.
+- Updated `README.md`, `AGENTS.md`, and `CLAUDE.md` so the template explains how `quality_reports/` now separates tracked reference material from the gitignored lab journal.
+- Kept `AGENTS.md` as the primary Codex session-memory file while preserving `CLAUDE.md` for compatibility.
+- Next step is to use the referee workspace in a real review workflow and decide how much of that process should become a dedicated skill.
+
 ### 2026-04-11 - Updated README for the Codex and Claude hybrid workflow
 - Rewrote `README.md` so it describes the active Codex skill tree in `.agents/skills` and the preserved Claude source material in `.claude/`.
 - Documented the current workflow model around `AGENTS.md`, `quality_reports/`, and the plan-build-verify loop.
@@ -40,7 +46,7 @@
 
 - [ ] Forward-test the migrated skills on a real manuscript, R script, or pipeline run.
 - [ ] Decide whether `CLAUDE.md` and `AGENTS.md` should both remain active session-memory files or be consolidated.
-- [ ] Refresh any remaining project docs or template placeholders that still assume a Claude-only workflow.
+- [ ] Use `quality_reports/referee_workspace/` in a real referee-report workflow and decide whether it should become a dedicated review skill.
 
 ---
 
@@ -74,7 +80,12 @@
 ```
 project/
 ├── AGENTS.md
-├── .Codex/                     # Agents, rules, skills
+├── .agents/                    # Codex-native skills
+│   └── skills/
+├── CLAUDE.md
+├── .claude/                    # Preserved Claude source material
+│   ├── agents/
+│   └── rules/
 ├── code/
 │   ├── main.r                   # Reproduces all results
 │   ├── 1-01.0_clean_data.r      # Stage 1: data cleaning/merging
@@ -96,6 +107,7 @@ project/
 ├── literature/                  # NOT in git
 ├── quality_reports/
 │   ├── plans/
+│   ├── referee_workspace/       # Referee-report guidance and examples
 │   └── session_logs/
 │       └── lab_journal.md           # NOT in git
 ```
@@ -146,9 +158,17 @@ Naming convention mirrors the script that produced the file: `[stage]-[group].[s
 
 ---
 
+## Quality Reports
+
+### `quality_reports/referee_workspace/`
+
+Reference material for referee work such as reviewing guidelines, example referee reports, and sample cover letters to editors. Keep reusable examples and templates here.
+
+---
+
 ## What Goes in Git
 
-- **Commit:** code, outputs (tables/figures), manuscript, .Rproj
+- **Commit:** code, outputs (tables/figures), manuscript, tracked `quality_reports/` materials such as `plans/` and `referee_workspace/`, .Rproj
 - **Do NOT commit:** data/raw/, data/clean/, data/temp/, data_dict/, literature/, quality_reports/session_logs/lab_journal.md, .Rhistory, .RData
 
 ---

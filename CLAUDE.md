@@ -15,7 +15,11 @@
      Full history lives in quality_reports/session_logs/lab_journal.md — do NOT read it
      unless the user asks or something critical seems to be missing. -->
 
-*(No sessions logged yet.)*
+### 2026-04-24 - Added a referee workspace and documented it across the template
+- Added `quality_reports/referee_workspace/` with referee-writing reference files, including a basic guideline plus example cover-letter and referee-report documents.
+- Updated `README.md`, `AGENTS.md`, and `CLAUDE.md` so the template explains how `quality_reports/` now separates tracked reference material from the gitignored lab journal.
+- Kept `AGENTS.md` as the primary Codex session-memory file while preserving `CLAUDE.md` for compatibility.
+- Next step is to use the referee workspace in a real review workflow and decide how much of that process should become a dedicated skill.
 
 ---
 
@@ -27,7 +31,9 @@
      Format: - [ ] Short description of task
               - [x] Completed task (remove these when list is updated) -->
 
-*(No plans yet.)*
+- [ ] Forward-test the migrated skills on a real manuscript, R script, or pipeline run.
+- [ ] Decide whether `CLAUDE.md` and `AGENTS.md` should both remain active session-memory files or be consolidated.
+- [ ] Use `quality_reports/referee_workspace/` in a real referee-report workflow and decide whether it should become a dedicated review skill.
 
 ---
 
@@ -83,6 +89,7 @@ project/
 ├── literature/                  # NOT in git
 ├── quality_reports/
 │   ├── plans/
+│   ├── referee_workspace/       # Referee-report guidance and examples
 │   └── session_logs/
 │       └── lab_journal.md           # NOT in git
 ```
@@ -133,9 +140,17 @@ Naming convention mirrors the script that produced the file: `[stage]-[group].[s
 
 ---
 
+## Quality Reports
+
+### `quality_reports/referee_workspace/`
+
+Reference material for referee work such as reviewing guidelines, example referee reports, and sample cover letters to editors. Keep reusable examples and templates here.
+
+---
+
 ## What Goes in Git
 
-- **Commit:** code, outputs (tables/figures), manuscript, .Rproj
+- **Commit:** code, outputs (tables/figures), manuscript, tracked `quality_reports/` materials such as `plans/` and `referee_workspace/`, .Rproj
 - **Do NOT commit:** data/raw/, data/clean/, data/temp/, data_dict/, literature/, quality_reports/session_logs/lab_journal.md, .Rhistory, .RData
 
 ---
