@@ -16,7 +16,7 @@ It started as a Claude Code workflow, and it now also includes a Codex-native sk
 | `.agents/skills/` | Codex-native skills for review, verification, workflow, and project conventions |
 | `.claude/agents/` | Original Claude agent specs preserved as source material |
 | `.claude/rules/` | Original Claude rules preserved as source material |
-| `quality_reports/` | Plans, referee-writing references, review outputs, and session logs |
+| `quality_reports/` | Plans, review/writing/presentation references, review outputs, and session logs |
 | `code/`, `manuscript/`, `outputs/`, `slides/` | Research and teaching project skeleton |
 
 ---
@@ -99,7 +99,7 @@ The main supporting skills for that loop are:
 ## Quality reports layout
 
 - `quality_reports/plans/` stores short saved plans for substantial work.
-- `quality_reports/referee_workspace/` stores tracked reference material for referee reports, editor cover letters, and reviewing guidelines.
+- `quality_reports/referee_workspace/` stores tracked reference material for referee reports, paper writing, presentation prep, and related academic craft.
 - `quality_reports/session_logs/lab_journal.md` is the full gitignored session archive and should stay local.
 
 ---
@@ -159,6 +159,7 @@ Typical locations:
 - `manuscript/` for LaTeX papers
 - `slides/` for teaching decks
 - `literature/` for reference PDFs
+- `quality_reports/referee_workspace/` for reusable reviewing, writing, and presentation references
 
 ### 5. Start working with the repo
 
@@ -228,4 +229,4 @@ The original Claude rule is preserved at:
 - `.claude/` should be treated as preserved source material unless you intentionally want to revise the upstream Claude setup.
 - `.agents/skills/` is now the main place for Codex skill behavior.
 - `AGENTS.md` is the preferred short session-memory file for Codex in this repo.
-- `quality_reports/referee_workspace/` is for reusable referee-writing examples and guidance, while `lab_journal.md` remains a local-only working log.
+- `quality_reports/referee_workspace/` is for reusable reviewing, writing, and presentation references, while `lab_journal.md` remains a local-only working log.

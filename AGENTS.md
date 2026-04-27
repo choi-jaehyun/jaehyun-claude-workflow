@@ -15,6 +15,12 @@
      Full history lives in quality_reports/session_logs/lab_journal.md — do NOT read it
      unless the user asks or something critical seems to be missing. -->
 
+### 2026-04-27 - Expanded the referee workspace into a broader reference library
+- Added new PDFs under `quality_reports/referee_workspace/` covering paper writing, presentation pitfalls, and general writing guidance.
+- Updated `README.md`, `AGENTS.md`, and `CLAUDE.md` so the folder is described as a broader reference workspace for review, writing, and presentation support.
+- Kept the existing folder name `referee_workspace/`, but documented its wider role rather than treating it as referee-only.
+- Next step is to decide whether the growing reference collection needs a local index or a dedicated skill that points to it.
+
 ### 2026-04-24 - Added a referee workspace and documented it across the template
 - Added `quality_reports/referee_workspace/` with referee-writing reference files, including a basic guideline plus example cover-letter and referee-report documents.
 - Updated `README.md`, `AGENTS.md`, and `CLAUDE.md` so the template explains how `quality_reports/` now separates tracked reference material from the gitignored lab journal.
@@ -27,15 +33,6 @@
 - Updated setup instructions, project structure, and the skill inventory to match the current repository state.
 - Kept the README explicit that `.claude/` remains preserved source material and `.agents/skills` is the active Codex layer.
 
-### 2026-04-11 - Converted Claude agents and rules into Codex skills
-- Read `.claude/agents/*.md` and `.claude/rules/*.md` as source material and left the `.claude/` folder untouched.
-- Added local skills under `.agents/skills`: `domain-reviewer`, `proofreader`, `r-reviewer`, `verifier`, `r-code-conventions`, and `workflow`, each with Codex-native instructions and reference files.
-- Rewired `proofread`, `review-r`, `review-paper`, `run-pipeline`, and `compile-paper` to use the new local skills instead of Claude-only agent or rule references.
-- Updated `devils-advocate` to stop pointing at `.Codex/rules/`.
-- Tried to run the skill validator, but the local Python environment is missing `PyYAML`, so validation was completed with manual sanity checks instead.
-
----
-
 ## Immediate Plans
 
 <!-- INSTRUCTIONS FOR Codex: Keep 2-3 of the most important upcoming tasks here.
@@ -46,7 +43,7 @@
 
 - [ ] Forward-test the migrated skills on a real manuscript, R script, or pipeline run.
 - [ ] Decide whether `CLAUDE.md` and `AGENTS.md` should both remain active session-memory files or be consolidated.
-- [ ] Use `quality_reports/referee_workspace/` in a real referee-report workflow and decide whether it should become a dedicated review skill.
+- [ ] Use `quality_reports/referee_workspace/` in a real review, writing, or presentation workflow and decide whether it should get a local index or dedicated skill support.
 
 ---
 
@@ -107,7 +104,7 @@ project/
 ├── literature/                  # NOT in git
 ├── quality_reports/
 │   ├── plans/
-│   ├── referee_workspace/       # Referee-report guidance and examples
+│   ├── referee_workspace/       # Review, writing, and presentation references
 │   └── session_logs/
 │       └── lab_journal.md           # NOT in git
 ```
@@ -162,7 +159,7 @@ Naming convention mirrors the script that produced the file: `[stage]-[group].[s
 
 ### `quality_reports/referee_workspace/`
 
-Reference material for referee work such as reviewing guidelines, example referee reports, and sample cover letters to editors. Keep reusable examples and templates here.
+Reference material for referee work, paper writing, presentation prep, and related academic craft. Keep reusable examples, templates, and guidance here.
 
 ---
 
